@@ -1,10 +1,26 @@
-Launch one EC2 instance with configurations like AMI, instance type, keypair, security group etc and connect it to the CLI 
+# AWS EC2 and S3 Infrastructure Provisioning using Terraform
+
+This project automates the provisioning of an EC2 instance and an S3 bucket using Terraform on Ubuntu 22.04.
+
+## 🔧 Prerequisites
+
+- Ubuntu 22.04 machine (or EC2/DigitalOcean instance)
+
+- AWS account and IAM user with appropriate permissions
+
+- Pre-created Key Pair in your AWS region
+
+- Terraform installed
+
+- AWS CLI installed
+
+## 🧱 Install Terraform on Ubuntu 22.04
 
 sudo su -
 
-search install terraform on ubuntu 22.04 digital ocean in browser
+apt update
 
-https://docs.digitalocean.com/reference/terraform/getting-started/
+apt install -y gnupg software-properties-common curl
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 
@@ -14,46 +30,86 @@ sudo apt-get update && sudo apt-get install terraform
 
 terraform -v
 
+📁 Directory and File Setup
+
 mkdir newdirectory
 
 cd newdirectory
 
-ls
+Create the following files with appropriate Terraform code:
 
-created files and added the code using the vi editor to different files respectively as per the requirement
+main.tf, ec2.tf, s3.tf, iam.tf, variables.tf, outputs.tf, startup.sh, setup.sh
 
-Files which I have created are s3.tf, ec2.tf, main.tf, variables.tf, outputs.tf, iam.tf, startup.sh, setup.sh, deploy.yaml
+deploy.yaml
 
-Next executed the terraform commands like
+Edit these files using your preferred editor (e.g., vi, nano, vscode).
 
-terraform init
+🛠️ AWS CLI Configuration
 
-terraform plan
+Install and configure the AWS CLI:
 
-Give the unique name for the S3 bucket which we want to create
-
-Next it will ask for the key pair name for the EC2 instance then give the key pair name which is already created and available in that region
-
-In the next step it will ask about the environment like dev/prod then just type dev 
+sudo apt install awscli
 
 aws configure
 
-apt install awscli
+Provide:
 
-Created access key and secret key for the IAM user
+Access Key ID
 
-Added credentials like access key, secret key, region and format
+Secret Access Key
+
+Default region (e.g., us-east-1)
+
+Output format (e.g., json)
+
+🚀 Terraform Workflow
+
+Initialize Terraform:
+
+terraform init
+
+Run a plan to preview the infrastructure:
+
+terraform plan
+
+Provide Input When Prompted:
+
+S3 Bucket Name (must be globally unique)
+
+Key Pair Name (already created in AWS)
+
+Environment (e.g., dev or prod)
+
+Apply the infrastructure:
 
 terraform apply
 
-Again add the same 
+Type yes to confirm and provision the infrastructure.
 
-S3 bucket name
+✅ What This Does
 
-key pair name
+Creates an EC2 instance in the configured AWS region.
 
-environment name
+Creates a unique S3 bucket.
 
-next just type yes
+Uses startup.sh and setup.sh scripts to configure the instance.
 
-It will create the S3 bucket and EC2 instance in the region which we have provide in the code.
+Optional deployment using deploy.yaml (e.g., for Kubernetes or Ansible).
+
+🧼 Cleanup
+
+To destroy the created resources:
+
+terraform destroy
+
+📎 Notes
+
+Make sure your Key Pair exists in the same region where you’re deploying the EC2.
+
+Ensure proper IAM permissions for the access key used.
+
+Scripts like startup.sh and setup.sh must be executable (chmod +x).
+
+📁 License
+
+This project is for learning/demo purposes. No license included.
