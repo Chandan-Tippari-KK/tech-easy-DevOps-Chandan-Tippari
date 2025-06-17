@@ -16,6 +16,24 @@ This project automates the provisioning of an EC2 instance and an S3 bucket usin
 
 ## 🧱 Install Terraform on Ubuntu 22.04
 
+AWS EC2 and S3 Infrastructure Provisioning using Terraform
+
+This project automates the provisioning of an EC2 instance and an S3 bucket using Terraform on Ubuntu 22.04.
+
+🔧 Prerequisites
+
+Ubuntu 22.04 machine (or EC2/DigitalOcean instance)
+
+AWS account and IAM user with appropriate permissions
+
+Pre-created Key Pair in your AWS region
+
+Terraform installed
+
+AWS CLI installed
+
+🧱 Install Terraform on Ubuntu 22.04
+
 sudo su -
 
 apt update
