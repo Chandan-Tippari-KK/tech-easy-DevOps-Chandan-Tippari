@@ -18,10 +18,6 @@ variable "env_name" {
   description = "Environment name (dev, qa, prod)"
 }
 
-variable "key_name" {
-  type        = string
-  description = "SSH key name"
-}
 
 variable "bucket_name" {
   description = "S3 bucket name"
@@ -32,10 +28,6 @@ variable "github_token" {
   type        = string
   description = "GitHub token for private config access"
   default     = ""
-
-variable "bucket_name" {
-  description = "S3 bucket name"  
-  type        = string
 }
 
 variable "key_name" {
@@ -43,7 +35,3 @@ variable "key_name" {
   type        = string
 }
 
-variable "stage" {
-  description = "Environment stage (dev/prod)"
-  type        = string
-}

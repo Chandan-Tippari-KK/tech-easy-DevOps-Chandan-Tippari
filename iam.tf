@@ -1,6 +1,5 @@
 resource "aws_iam_role" "upload_s3" {
   name = "UploadOnlyS3-${var.env_name}
-  name = "UploadOnlyS3-${var.stage}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
@@ -13,7 +12,6 @@ resource "aws_iam_role" "upload_s3" {
 
 resource "aws_iam_policy" "upload_policy" {
   name = "UploadOnlyPolicy-${var.env_name}"
-  name = "UploadOnlyPolicy-${var.stage}"
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -44,6 +42,5 @@ resource "aws_iam_role_policy_attachment" "upload_attach" {
 
 resource "aws_iam_instance_profile" "upload_profile" {
   name = "UploadProfile-${var.env_name}"
-  name = "UploadProfile-${var.stage}"
   role = aws_iam_role.upload_s3.name
 }
