@@ -1,5 +1,5 @@
 resource "aws_iam_role" "upload_s3" {
-  name = "UploadOnlyS3-${var.env_name}
+  name = "UploadOnlyS3-${var.env_name}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
@@ -44,3 +44,4 @@ resource "aws_iam_instance_profile" "upload_profile" {
   name = "UploadProfile-${var.env_name}"
   role = aws_iam_role.upload_s3.name
 }
+
