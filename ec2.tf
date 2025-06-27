@@ -1,5 +1,5 @@
-resource "aws_security_group" "app_sg" {
-  name        = "app-sg"
+resource "aws_security_group" "app_sg_new" {
+  name        = "app-sg-new"
   description = "Allow 22 and 80"
   ingress {
     from_port   = 22
@@ -28,10 +28,10 @@ resource "aws_instance" "app_ec2" {
   instance_type = "t2.micro"
   key_name      = var.key_name
   iam_instance_profile = aws_iam_instance_profile.upload_profile.name
-  vpc_security_group_ids = [aws_security_group.app_sg.id]
+  vpc_security_group_ids = [aws_security_group.app_sg_new.id]
   user_data     = file("startup.sh")
 
   tags = {
-    Name = "AppEC2-${var.stage}"
+    Name = "AppEC2-${var.env_name}"
   }
 }
