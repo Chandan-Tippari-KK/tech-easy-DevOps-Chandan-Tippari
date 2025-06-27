@@ -1,4 +1,4 @@
-iresource "aws_iam_role" "upload_s3" {
+resource "aws_iam_role" "upload_s3" {
   name = "UploadOnlyS3-${var.env_name}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
