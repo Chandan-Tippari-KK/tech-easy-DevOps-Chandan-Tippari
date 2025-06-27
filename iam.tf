@@ -21,7 +21,6 @@ resource "aws_iam_policy" "upload_policy" {
         Resource = [ 
           "arn:aws:s3:::${var.bucket_name}",
           "arn:aws:s3:::${var.bucket_name}/*"
-          "arn:aws:s3:::${var.bucket_name}/app/logs/*"
         ]
       },
       {
