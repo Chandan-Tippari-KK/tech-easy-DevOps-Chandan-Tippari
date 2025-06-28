@@ -58,7 +58,7 @@ Create the following files with appropriate Terraform code:
 
 main.tf, ec2.tf, s3.tf, iam.tf, variables.tf, outputs.tf, startup.sh, setup.sh
 
-deploy.yaml
+deploy.yaml, dev.json, dev.tfvars, prod.json, prod.tfvars, user_data.sh
 
 Edit these files using your preferred editor (e.g., vi, nano, vscode).
 
@@ -92,17 +92,103 @@ terraform plan
 
 Provide Input When Prompted:
 
+AMI to use for EC2
+
+(for example
+
+Enter a value: ami-0a7d80731ae1b2435)
+
+AWS Region
+
+(for example
+
+Enter a value: us-east-1)
+
 S3 Bucket Name (must be globally unique)
+
+(for example
+
+Enter a value: mynewuniquetests3bucket440)
+
+Environment name (e.g., dev or prod)
+
+(for example
+
+Enter a value: dev)
+
+EC2 instance type
+
+(for example
+
+Enter a value: t2.micro)
 
 Key Pair Name (already created in AWS)
 
-Environment (e.g., dev or prod)
+(for example
+
+Enter a value: mynewkeypair)
 
 Apply the infrastructure:
 
 terraform apply
 
 Type yes to confirm and provision the infrastructure.
+
+next run this command (This command removes the resource from Terraform state without touching the actual infrastructure.)
+
+terraform state rm aws_s3_bucket_lifecycle_configuration.lifecycle
+
+Test Upload to S3 (Step-by-Step)
+
+✅ 1. Create a Test File
+
+echo "Hello from Chandan!" > testfile.txt
+
+✅ 2. Upload the File to Your S3 Bucket
+
+Replace <your-bucket-name> with your actual bucket name:
+
+aws s3 cp testfile.txt s3://<your-bucket-name>/
+
+✅ Example:
+
+(as we have created a s3 bucket named mynewuniquetests3bucket440 replace <your-bucket-name> with mynewuniquetests3bucket440)
+
+aws s3 cp testfile.txt s3:///mynewuniquetests3bucket440
+
+✅ 3. Verify the Upload
+
+aws s3 ls s3://mynewuniquetests3bucket440/
+
+You should see testfile.txt in the output.
+
+✅ 4. (Optional) Download the File Back
+
+To confirm the upload:
+
+aws s3 cp s3://mynewuniquetests3bucket440/testfile.txt downloaded.txt
+
+cat downloaded.txt
+
+You should see:
+
+Hello from Chandan!
+
+Health Check
+
+curl de-instance_public-ip
+
+(for example: curl 54.85.254.127)
+
+<h1>dev deployment successful</h1>
+
+This confirms:
+
+Your application is up and running on port 80
+
+The EC2 instance (dev-instance with public ip for example 54.85.254.127 ) is reachable publicly
+
+Your deployment succeeded and the health check passes
 
 ✅ What This Does
 
