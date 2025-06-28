@@ -6,7 +6,7 @@ sudo apt install -y git jq
 
 # Fetch config from GitHub
 curl -H "Authorization: token ${github_token}" -L \
-"https://github.com/Chandan-Tippari-KK/config-repo/dev.json" \
+"https://github.com/Chandan-Tippari-KK/tech-easy-DevOps-Chandan-Tippari/dev.json" \
 -o /app/config.json
 
 curl -H "Authorization: token ${github_token}" -L \
