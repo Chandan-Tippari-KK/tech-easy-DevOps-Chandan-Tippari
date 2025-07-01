@@ -146,13 +146,13 @@ echo "Hello from Chandan!" > testfile.txt
 
 Replace with your actual bucket name:
 
-aws s3 cp testfile.txt s3:///
+aws s3 cp testfile.txt s3://bucket_name/
 
 ✅ Example:
 
 (as we have created a s3 bucket named mynewuniquetests3bucket440 replace with mynewuniquetests3bucket440)
 
-aws s3 cp testfile.txt s3:///mynewuniquetests3bucket440
+aws s3 cp testfile.txt s3://mynewuniquetests3bucket440/
 
 ✅ 3. Verify the Upload
 
