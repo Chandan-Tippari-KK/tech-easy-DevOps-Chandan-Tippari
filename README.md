@@ -53,7 +53,7 @@ Create the following files with appropriate Terraform code:
 
 main.tf, ec2.tf, s3.tf, iam.tf, variables.tf, outputs.tf, startup.sh, setup.sh
 
-deploy.yaml, dev.json, dev.tfvars, prod.json, prod.tfvars, user_data.sh
+deploy.yaml, dev.json, dev.tfvars, prod.json, prod.tfvars, user_data.sh, cloudwatch-config.json
 
 Edit these files using your preferred editor (e.g., vi, nano, vscode).
 
