@@ -87,6 +87,12 @@ terraform plan
 
 Provide Input When Prompted:
 
+Your email for SNS alerts
+
+(for example
+
+Enter a value: tipparichandan@gmail.com (replace this email Id with your personal email Id))
+
 AMI to use for EC2
 
 (for example
@@ -132,6 +138,10 @@ Type yes to confirm and provision the infrastructure.
 next run this command (This command removes the resource from Terraform state without touching the actual infrastructure.)
 
 terraform state rm aws_s3_bucket_lifecycle_configuration.lifecycle
+
+If Instance Profile UploadProfile-dev already exists then run this below command
+
+terraform import aws_iam_instance_profile.upload_profile UploadProfile-dev
 
 Test Upload to S3 (Step-by-Step)
 
